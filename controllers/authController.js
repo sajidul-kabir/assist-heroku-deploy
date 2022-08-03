@@ -10,6 +10,7 @@ let refreshTokens = [];
 
 //Sign Up An User
 exports.signUser = catchAsync(async (req, res, next) => {
+  console.log("LOGGED INNN", req.body);
   const { email, fullname, password, role } = req.body;
 
   //Hashing Password
