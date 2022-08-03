@@ -43,6 +43,7 @@ exports.signUser = catchAsync(async (req, res, next) => {
       });
     }
   } else {
+    console.log("YOU HAVE ENTERED CONSUMER BLOCK");
     if ((await (await Consumer.find({ email: email })).length) == 0) {
       newUser = new Consumer({
         fullname,
@@ -55,6 +56,7 @@ exports.signUser = catchAsync(async (req, res, next) => {
 
   //Logging in new User
   if (newUser) {
+    console.log("ACCESS FOR THE NEW USER");
     const userId = {
       role,
       id: newUser._id,
