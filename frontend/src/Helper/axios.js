@@ -1,12 +1,13 @@
 import axios from "axios";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 const cookies = new Cookies();
-const instance=axios.create({
-    baseURL:"http://localhost:8080",
-})
-if(cookies.get("assistc")){
-
-    instance.defaults.headers['Authorization']=`Bearer ${cookies.get("assistc")}`
+const instance = axios.create({
+  baseURL: "",
+});
+if (cookies.get("assistc")) {
+  instance.defaults.headers["Authorization"] = `Bearer ${cookies.get(
+    "assistc"
+  )}`;
 }
 
-export default instance
+export default instance;
