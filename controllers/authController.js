@@ -56,19 +56,16 @@ exports.signUser = catchAsync(async (req, res, next) => {
 
   //Logging in new User
   if (newUser) {
-    console.log("ACCESS FOR THE NEW USER");
+    console.log("ACCESS FOR THE NEW USER", newUser);
     const userId = {
       role,
       id: newUser._id,
       fullname,
     };
     const accessToken = generateToken(userId);
-    const refreshToken = jwt.sign(userId, process.env.REFRESHTOKEN);
-    refreshTokens.push(refreshToken);
     newUser.save();
     res.send({
       accessToken,
-      refreshToken,
       role,
     });
   } else {
@@ -105,12 +102,9 @@ exports.login = catchAsync(async (req, res, next) => {
 
     //Providing the user with a token
     const accessToken = generateToken(userId);
-    const refreshToken = jwt.sign(userId, process.env.REFRESHTOKEN);
-    refreshTokens.push(refreshToken);
 
     res.send({
       accessToken: accessToken,
-      refreshToken: refreshToken,
       role: role,
     });
   } else {
